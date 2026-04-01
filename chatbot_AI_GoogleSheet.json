@@ -1,0 +1,155 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6772618c-1be6-441b-a657-e76b781a80e8",
+      "name": "When chat message received",
+      "webhookId": "1a794d32-8932-434c-82b9-94c711640f84"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3249f432-dd01-4c72-97d3-2c559ea4ab65",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "239c7c23-fa66-4843-bc8f-548ea87f8e2c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "X0DeHLKH7lFxOpW0",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        224,
+        208
+      ],
+      "id": "bee60058-7762-4c57-8ea5-f87d239e62ca",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1cFlRVg4Dkm0m_a5dlmALfa2axXhZpyymBiTQx-Om2HA",
+          "mode": "list",
+          "cachedResultName": "produk pelatihan & harga",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cFlRVg4Dkm0m_a5dlmALfa2axXhZpyymBiTQx-Om2HA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cFlRVg4Dkm0m_a5dlmALfa2axXhZpyymBiTQx-Om2HA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        544,
+        160
+      ],
+      "id": "218a833d-68d3-49bd-ae8c-34388cc04c98",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "P2RmFusjld0RoMPx",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "741352f0-5a6f-4f24-bd06-7089622b38be",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a6b8ac799d29f6a11e3e6c2cc952b14acb9b202c2113236ae4b338d9efde2987"
+  },
+  "id": "yI12ofmjD5FCpRcf",
+  "tags": []
+}
